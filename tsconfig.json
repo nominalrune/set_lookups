@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"incremental": true,
+		"target": "es6",
+		"module": "CommonJS",
+		"lib": [
+			"ESnext",
+			"DOM"
+		],
+		"allowJs": true,
+		"checkJs": false,
+		"declaration": true,
+		"rootDir": "./",
+		"noImplicitAny": true,
+		"allowUmdGlobalAccess": true,
+		"pretty": true,
+		"strictNullChecks": true,
+		"traceResolution": true,
+		"composite": true,
+		"tsBuildInfoFile": "./",
+		"importHelpers": true,
+		"isolatedModules": false,
+		"strict": false,
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	}
+}

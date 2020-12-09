@@ -7,10 +7,11 @@
   "license": "BSD",
   "private": false,
   "scripts": {
-    "gettype": "export $(cat .env | xargs -d '\n');printf 'give me an app id?'; read APP </dev/tty;kintone-dts-gen --app-id $APP -u $KINTONE_USERNAME -p $KINTONE_PASSWORD --host $KINTONE_BASE_URL --basic-auth-username $KINTONE_BASIC_AUTH_USERNAME --basic-auth-password $KINTONE_BASIC_AUTH_PASSWORD -o app$APP.d.ts < /dev/tty",
+    "gettype": "export $(cat .env | xargs -d '\n');printf 'give me an app id?'; read APP </dev/tty;kintone-dts-gen --app-id $APP -u $KINTONE_USERNAME -p $KINTONE_PASSWORD --host $KINTONE_BASE_URL --basic-auth-username $KINTONE_BASIC_AUTH_USERNAME --basic-auth-password $KINTONE_BASIC_AUTH_PASSWORD -o app$APP.d.ts < /dev/tty"
   },
   "devDependencies": {
     "@kintone/dts-gen": "^3.0.8",
+    "@kintone/rest-api-client": "^1.7.1",
     "dotenv": "^8.2.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.2"

@@ -1,4 +1,4 @@
-export const kintone:{
+export const kintone: {
 	events: {
 		on(
 			event: string | string[],
@@ -15,29 +15,29 @@ export const kintone:{
 	api: {
 		url(
 			path: string,
-			detectGuestSpace ?: boolean
+			detectGuestSpace?: boolean
 		): string;
 		urlForGet(
 			path: string,
 			params: any,
-			detectGuestSpace ?: boolean
+			detectGuestSpace?: boolean
 		): string;
 
 		getConcurrencyLimit(): Promise<{
 			limit: number;
 			running: number;
 		}>;
-	}&((
+	} & ((
 		pathOrUrl: string,
 		method: string,
 		params: any
-    )=>(Promise<any>))&((
+	) => (Promise<any>)) & ((
 		pathOrUrl: string,
 		method: string,
 		params: any,
 		callback?: (resp: any) => void,
 		errback?: (err: any) => void
-    )=>(void));
+	) => (void));
 
 	getRequestToken(): string;
 
@@ -55,7 +55,7 @@ export const kintone:{
 		data: any,
 		callback: (resp: any) => void,
 		errback: (err: any) => void
-    ): void;
+	): void;
 
 	proxy: {
 		upload(
@@ -65,7 +65,7 @@ export const kintone:{
 			data: any,
 			callback: (resp: any) => void,
 			errback: (err: any) => void
-        ): void;
+		): void;
 
 		upload(
 			url: string,
@@ -154,8 +154,8 @@ export const kintone:{
 			getConfig(pluginId: string): any;
 			setConfig(
 				config: any,
-				callback ?: () => void
-            ): void;
+				callback?: () => void
+			): void;
 
 			proxy(
 				pluginId: string,
@@ -173,15 +173,15 @@ export const kintone:{
 				data: any,
 				callback: (resp: any) => void,
 				error: (err: any) => void
-            ): void;
+			): void;
 
 			setProxyConfig(
 				url: string,
 				method: string,
 				headers: any,
 				data: any,
-				callback ?: () => void
-            ): void;
+				callback?: () => void
+			): void;
 
 			getProxyConfig(
 				url: string,
@@ -205,7 +205,7 @@ export const kintone:{
 					data: any,
 					callback: (resp: any) => void,
 					error: (err: any) => void
-                ): void;
+				): void;
 			}
 		}
 	}
@@ -232,174 +232,336 @@ export const kintone:{
 	getLoginUser: () => LoginUser;
 	getUiVersion: () => 1 | 2;
 
-	fieldTypes: {
-		SingleLineText: {
-			type ?: "SINGLE_LINE_TEXT";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		RichText: {
-			type ?: "RICH_TEXT";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		MultiLineText: {
-			type ?: "MULTI_LINE_TEXT";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		Number: {
-			type ?: "NUMBER";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		Calc: {
+	fieldTypes: 
+		{
+			type: "SINGLE_LINE_TEXT";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			maxLength?: number | string
+			minLength?: number | string
+			defaultValue?: string | string[]
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "RICH_TEXT";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			maxLength?: number | string
+			minLength?: number | string
+			defaultValue?: string | string[]
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "MULTI_LINE_TEXT";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			maxLength?: number | string
+			minLength?: number | string
+			defaultValue?: string | string[]
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "NUMBER";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			maxValue?: number | string
+			minValue?: number | string
+			defaultValue?: string | string[]
+			digit?: boolean | string
+			unit?: string
+			unitPosition?: 'BEFORE' | 'AFTER'
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
 			type: "CALC";
-			value: string;
-			disabled ?: boolean;
-		}
-
-		RadioButton: {
-			type ?: "RADIO_BUTTON";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		DropDown: {
-			type ?: "DROP_DOWN";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		Date: {
-			type ?: "DATE";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		Time: {
-			type ?: "TIME";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		DateTime: {
-			type ?: "DATETIME";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		Link: {
-			type ?: "LINK";
-			value: string;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		CheckBox: {
-			type ?: "CHECK_BOX";
-			value: string[];
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		MultiSelect: {
-			type ?: "MULTI_SELECT";
-			value: string[];
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		UserSelect: {
-			type ?: "USER_SELECT";
-			value: Array<{ code: string; name: string }>;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		OrganizationSelect: {
-			type ?: "ORGANIZATION_SELECT";
-			value: Array<{ code: string; name: string }>;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		GroupSelect: {
-			type ?: "GROUP_SELECT";
-			value: Array<{ code: string; name: string }>;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		File: {
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			maxValue?: number | string
+			minValue?: number | string
+			expression?: string
+			hideExpression?: boolean | string
+			digit?: boolean | string
+			unit?: string
+			unitPosition?: 'BEFORE' | 'AFTER'
+			format?: string
+			value?: string;
+			disabled?: boolean;
+		}|{
+			type: "RADIO_BUTTON";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			options?: { [name: string]: { label: string, index: string | number } }
+			align?: 'HORIZONTAL' | 'VERTICAL'
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "DROP_DOWN";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			options?: { [name: string]: { label: string, index: string | number } }
+			align?: 'HORIZONTAL' | 'VERTICAL'
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "DATE";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			maxValue?: number | string
+			minValue?: number | string
+			defaultValue?: string | string[]
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "TIME";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			maxValue?: number | string
+			minValue?: number | string
+			defaultValue?: string | string[]
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "DATETIME";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			maxValue?: number | string
+			minValue?: number | string
+			defaultValue?: string | string[]
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "LINK";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: string;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "CHECK_BOX";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			options: { [name: string]: { label: string, index: string | number } }
+			align?: 'HORIZONTAL' | 'VERTICAL'
+			digit?: boolean | string
+			unit?: string
+			value?: string[];
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "MULTI_SELECT";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			options: { [name: string]: { label: string, index: string | number } }
+			align?: 'HORIZONTAL' | 'VERTICAL'
+			value?: string[];
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "USER_SELECT";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			options?: { [name: string]: { label: string, index: string | number } }
+			align?: 'HORIZONTAL' | 'VERTICAL'
+			value?: Array<{ code: string; name: string }>;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "ORGANIZATION_SELECT";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			options?: { [name: string]: { label: string, index: string | number } }
+			align?: 'HORIZONTAL' | 'VERTICAL'
+			value?: Array<{ code: string; name: string }>;
+			disabled?: boolean;
+			error?: string;
+		}|{
+			type: "GROUP_SELECT";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			options?: { [name: string]: { label: string, index: string | number } }
+			align?: 'HORIZONTAL' | 'VERTICAL'
+			value?: Array<{ code: string; name: string }>;
+			disabled?: boolean;
+			error?: string;
+		}|{
 			type: "FILE";
-			value: Array<{
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: Array<{
 				contentType: string;
 				fileKey: string;
 				name: string;
 				size: string;
 			}>;
-			disabled ?: boolean;
-			error ?: string;
-		}
-
-		Id: {
+			disabled?: boolean;
+			error?: string;
+		}|{
 			type: "__ID__";
-			value: string;
-		}
-
-		Revision: {
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: string;
+		}|{
 			type: "__REVISION__";
-			value: string;
-		}
-
-		/**
-		 * field type of UserField is MODIFIER.
-		 * So error property not exists.
-		 */
-		Modifier: {
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: string;
+		}|{
 			type: "MODIFIER";
-			value: { code: string; name: string };
-		}
-
-		/**
-		 * field type of UserField is CREATOR.
-		 * So error property not exists.
-		 */
-		Creator: {
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: { code: string; name: string };
+		}|{
 			type: "CREATOR";
-			value: { code: string; name: string };
-		}
-
-		RecordNumber: {
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: { code: string; name: string };
+		}|{
 			type: "RECORD_NUMBER";
-			value: string;
-			error ?: string;
-		}
-
-		UpdatedTime: {
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: string;
+			error?: string;
+		}|{
 			type: "UPDATED_TIME";
-			value: string;
-			error ?: string;
-		}
-
-		CreatedTime: {
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: string;
+			error?: string;
+		}|{
 			type: "CREATED_TIME";
-			value: string;
-			error ?: string;
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			defaultValue?: string | string[]
+			value?: string;
+			error?: string;
+		}|{
+			type: "SUBTABLE";
+			relatedApp: {
+				app: string | number,
+				code: string
+			},
+			condition: {
+				field?: string,
+				relatedField?: string
+			},
+			filterCond?: string,
+			displayFields?: string[],
+			sort?: string
+		}|{
+			type: "NUMBER";
+			code: string;
+			label: string;
+			noLabel?: boolean;
+			required?: boolean;
+			unique?: boolean;
+			lookup: {
+				relatedApp: {
+					app: string | number,
+					code: string
+				},
+				relatedKeyField: string,
+				fieldMappings: { field: string, relatedfield: string }[],
+				filterCond?: string,
+				lookupPickerFields?: string[],
+				sort?: string
+			}
+			value?: string;
+			error?: string;
 		}
-	}
+	
 }
